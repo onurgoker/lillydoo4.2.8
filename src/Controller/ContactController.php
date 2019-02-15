@@ -10,11 +10,39 @@ use App\Entity\Contact;
 class ContactController extends AbstractController
 {
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="contacts")
      */
     public function index()
     {
+        $contacts = $this->getDoctrine()
+            ->getRepository(Contact::class)
+            ->findAll();
 
+        return $this->render('contact/index.html.twig', [
+            'contacts' => $contacts,
+            'controller_name' => 'ContactController',
+        ]);
+    }
+
+    /**
+    * @Route("/contact/{id}", name="contact")
+    */
+    public function show(Contact $contact)
+    {
+        //$deleteForm = $this->createDeleteForm($post);
+
+        $contact = $this->getDoctrine()
+            ->getRepository(Contact::class)
+            ->find($contact->getId());
+
+        return $this->render('contact/show.html.twig', [
+            'contact' => $contact,
+            //'delete_form' => $deleteForm->createView(),
+        ]);
+    }
+
+    public function create() 
+    {
         // you can fetch the EntityManager via $this->getDoctrine()
         // or you can add an argument to your action: index(EntityManagerInterface $entityManager)
         $entityManager = $this->getDoctrine()->getManager();
@@ -37,11 +65,5 @@ class ContactController extends AbstractController
         $entityManager->flush();
 
         return new Response('Saved new contact with id '.$contact->getId());
-
-        /*
-        return $this->render('contact/index.html.twig', [
-            'controller_name' => 'ContactController',
-        ]);
-        */
     }
 }

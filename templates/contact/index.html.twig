@@ -17,4 +17,11 @@
         <li>Your template at <code><a href="{{ '/var/www/html/lillydoo4.2.8/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
     </ul>
 </div>
+
+<ul>
+{% for contact in contacts %}
+    <li><a href="/contact/{{contact.id}}">{{contact.firstname}} - {{contact.lastname}}</a></li>
+{% endfor %}
+</ul>
+
 {% endblock %}
