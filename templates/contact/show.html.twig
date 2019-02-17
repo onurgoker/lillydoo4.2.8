@@ -8,7 +8,19 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>{{contact.firstname}} {{contact.lastname}}</h1>
+<div class="container">
+    <div class="row">
+        <h1>{{contact.firstname}} {{contact.lastname}}</h1>
+    </div>
+    <div class="row">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <input type="submit" />
+        {{ form_end(form) }}    
+    </div>
+</div>
+
+
 
 {% endblock %}

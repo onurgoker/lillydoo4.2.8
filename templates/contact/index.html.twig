@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Lilly Doo{% endblock %}
 
 {% block body %}
 <style>
@@ -8,20 +8,40 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/lillydoo4.2.8/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/lillydoo4.2.8/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
-</div>
-
-<ul>
+<div class="container">
+    <div class="row">
+        <h1>Contact System</h1>
+    </div>
+    <div class="row">
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name Surname</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            </tr>
+        </thead>
+        <tbody>
 {% for contact in contacts %}
-    <li><a href="/contact/{{contact.id}}">{{contact.firstname}} - {{contact.lastname}}</a></li>
+    
+            <tr>
+            <th scope="row">{{contact.id}}</th>
+            <td><a href="../public/index.php/contact/{{contact.id}}">{{contact.firstname}} {{contact.lastname}}</a></td>
+            <td>{{contact.email}}</td>
+            <td>{{contact.phonenumber}}</td>
+            <td>{{contact.address}}</td>
+            </tr>
 {% endfor %}
-</ul>
 
+        </tbody>
+        </table>    
+    </div>
+    <div class="row">
+        <div class="navigation">
+            {{ knp_pagination_render(contacts) }}
+        </div>
+    </div>
+</div>
 {% endblock %}

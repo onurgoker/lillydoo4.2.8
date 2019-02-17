@@ -5,7 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}
-            <link rel="stylesheet" href="../build/app.css">
+            <link rel="stylesheet" href="{{ asset('', packageName = null) }}build/app.css">
         {% endblock %}
     </head>
     <body>
